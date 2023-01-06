@@ -7,6 +7,10 @@ body {
     font-family: 'Source Sans 3', sans-serif;
     font-size: 1rem;
     color: rgba(255, 255, 255, .65);
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-title,
@@ -32,36 +36,39 @@ body {
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
 }
 
+.card-grid {
+    display: grid;
+    grid-template: 200px 1em auto auto 100px 1em / 1em auto auto 1em;
+}
 
 
 .card-img {
+    grid-row: 1;
+    grid-column: 1 / -1;
     object-fit: cover;
-    flex-basis: 200px;
-    min-height: 0;
-    min-width: 0;
+    max-height: 100%;
+    width: 100%;
+}
+
+.card-title {
+    grid-row: 3;
+    grid-column: 2 / -2;
 }
 
 .card-body {
+    grid-row: 4;
+    grid-column: 2 / -2;
     line-height: 1.6;
 }
 
-.card-content {
-    padding: 3em 2.25em;
-}
-
-.card-btn-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 3em;
-}
-
-.card-btn-flex>p {
+.card-side-text {
+    align-self: end;
+    letter-spacing: .9;
     margin: 0;
+    grid-row: 5;
+    grid-column: 2;
 }
 
 .card-btn {
@@ -71,10 +78,10 @@ body {
     color: #111D4A;
     font-weight: 700;
     padding: .4em 1.5em;
-}
-
-.card-side-text {
-    letter-spacing: .9;
+    grid-row: 5;
+    grid-column: 3;
+    align-self: end;
+    justify-self: end;
 }
 
 span {
@@ -86,26 +93,37 @@ span {
 /* MEDIA QUERIES */
 
 @media (min-width: 600px) {
+    .card-grid {
+        display: grid;
+        grid-template: 1em auto auto auto 1em / 200px auto auto 0px;
+        grid-column-gap: 3em;
+    }
+
+    .card-img {
+        grid-column: 1;
+        grid-row: 1 / -1;
+    }
 
     .card-title {
         font-size: 2rem;
-    }
-
-    .card {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .card-content {
-        display: flex;
-        flex-direction: column;
-
+        grid-column: 2 / -2;
+        grid-row: 2;
     }
 
     .card-body {
         max-width: 500px;
         font-size: 1.125rem;
+        grid-row: 3;
+        grid-column: 2 / -2;
     }
 
+    .card-side-text {
+        grid-row: 4;
+        grid-column: 2;
+    }
 
+    .card-btn {
+        grid-row: 4;
+        grid-column: 3;
+    }
 }
